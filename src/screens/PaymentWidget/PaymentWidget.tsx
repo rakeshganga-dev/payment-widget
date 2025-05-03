@@ -24,8 +24,7 @@ import { io, Socket } from 'socket.io-client';
 type ExpressCheckoutMethod = "googlepay" | "paypal" | "shoppay";
 
 interface PaymentWidgetProps {
-  isExpressCheckout: boolean;
-  expressCheckoutMethods: ExpressCheckoutMethod[];
+  expressCheckoutMethods?: ExpressCheckoutMethod[];
   theme: "Primary" | "Secondary";
 }
 type FormData = {
@@ -61,9 +60,8 @@ const STATUS:statusType = {
   failure: "Failure"
 }
 
-const socket: Socket = io('http://localhost:3000');
+const socket: Socket = io('https://payment-widget-api.onrender.com');
 const PaymentWidget: React.FC<PaymentWidgetProps> = ({
-  isExpressCheckout = true,
   expressCheckoutMethods = [],
   theme = "Primary"
 }) => {
@@ -79,7 +77,7 @@ const PaymentWidget: React.FC<PaymentWidgetProps> = ({
 
   const createSession = async () => {
     try {
-      const response = await axios.post<{ sessionId: string; status: keyof statusType }>('http://localhost:3000/session');
+      const response = await axios.post<{ sessionId: string; status: keyof statusType }>('https://payment-widget-api.onrender.com/session');
       const newSessionId = response.data.sessionId;
       const status: keyof statusType = response.data.status;
       setSessionId(newSessionId);
@@ -87,6 +85,8 @@ const PaymentWidget: React.FC<PaymentWidgetProps> = ({
       console.log(`Created session: ${newSessionId}`);
     } catch (error) {
       console.error('Error creating session:', error);
+      setIsLoading(false)
+      setShowFailure(true)
     }
   };
 
@@ -210,7 +210,7 @@ const PaymentWidget: React.FC<PaymentWidgetProps> = ({
       {isLoading && <OverlayLoader isLoading={true} message={`${status}`} />}
       <PaymentSuccessModal isOpen={showSuccess} onClose={() => setShowSuccess(false)} />
       <PaymentFailureModal isOpen={showFailure} onClose={() => setShowFailure(false)} />
-      {isExpressCheckout && (
+      {(expressCheckoutMethods && expressCheckoutMethods.length > 0 )&& (
         <>
           <div className="express-checkout">
             {expressCheckoutMethods.includes("shoppay") && (

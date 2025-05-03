@@ -1,0 +1,26 @@
+.upi-card-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.upi-card-container img{
+    display: block;
+    margin: 0;
+    padding: 0;
+    max-width: 30px;
+    height: auto;
+}
+.upi-card-title{
+    flex-grow: 1;
+    font-size: 0.6rem;
+}
+.upi-id-container{
+    width: 82%;
+    margin-left: 6px;
+}
+.error {
+    color: #e63946;
+    font-size: 0.45rem;
+    margin-top: 4px;
+  }

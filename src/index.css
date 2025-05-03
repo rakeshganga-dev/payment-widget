@@ -1,0 +1,15 @@
+
+:root {
+  --font-family: "Montserrat", sans-serif;
+  --color: #44c767;
+  --border-color: #18ab29;
+  --active-color: #44c767;
+  --hover-color: #39cd61;
+  --disabled-color: #44c7676b;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  margin: 0;
+}

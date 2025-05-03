@@ -1,0 +1,39 @@
+.line-with-or {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .line-with-or::before,
+  .line-with-or::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .line-with-or span {
+    padding: 0 10px;
+    color: #555555a0;
+    font-weight: 200;
+  }
+  .payment-widget-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 50px;
+    border: none;
+}
+  .express-checkout{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  .note-session{
+    font-size: 0.4rem;
+    color: #9AA6B2;
+  }
+  .link{
+    color: var(--color);
+  }

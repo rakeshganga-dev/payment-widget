@@ -1,0 +1,24 @@
+
+.buttonClass {
+    font-size:15px;
+    font-family:Arial;
+    width:100%;
+    height:45px;
+    border-width:0px;
+    color:#fff;
+    border-color: var(--border-color);
+    border-top-left-radius:6px;
+    border-top-right-radius:6px;
+    border-bottom-left-radius:6px;
+    border-bottom-right-radius:6px;
+  }
+  
+  .buttonActive:hover {
+    background: var(--hover-color);
+  }
+  .buttonActive{
+    background: var(--active-color);
+  }         
+  .buttonDisabled{
+    background: var(--disabled-color);
+  }

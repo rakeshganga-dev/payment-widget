@@ -1,0 +1,22 @@
+.netbanking-card-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.netbanking-card-container img{
+    display: block;
+    margin: 0;
+    padding: 0;
+    max-width: 60px;
+    height: auto;
+}
+.netbanking-card-title{
+    flex-grow: 1;
+    font-size: 0.6rem;
+}
+.netbanking-id-container{
+    width: 36%;
+    margin-left: 34px;
+}

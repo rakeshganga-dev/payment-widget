@@ -1,0 +1,47 @@
+
+
+.form-group {
+    margin-bottom: 16px;
+    width: 90%;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 400;
+    font-size: 0.6rem;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 16px;
+    width: 86%;
+  }
+  .form-group input{
+    width: 92%;
+  }
+  .form-group.half {
+    flex: 1;
+  }
+  .form-group.half.expiry input{
+    width: 90px;
+  }
+  
+  .error {
+    color: #e63946;
+    font-size: 0.45rem;
+    margin-top: 4px;
+  }
+  
+  .svg_icon {
+    position: absolute;
+    right: 5%;
+    fill: var(--color);
+    width: 10px;
+    height: 10px;
+  }
+  .custom_input {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }

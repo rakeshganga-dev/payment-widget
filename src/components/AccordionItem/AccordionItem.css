@@ -7,9 +7,9 @@
         cursor: pointer;
         font-weight: 600;
         display: flex;
-        justify-content: space-between;
         align-items: center;
         font-size: 0.6rem;
+        gap: 10px;
 }
 .accordion-content-container{
     overflow: hidden;
@@ -19,4 +19,13 @@
     -moz-transition: max-height 0.4s ease;
     -ms-transition: max-height 0.4s ease;
     -o-transition: max-height 0.4s ease;
+}
+.accordion-button img{
+    height: auto;
+    width: 20px;
+}
+.accordion-card-icons{
+    flex: 1;
+    display: flex;
+    justify-content: end;
 }

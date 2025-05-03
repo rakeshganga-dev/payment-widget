@@ -20,6 +20,10 @@ import PaymentSuccessModal from "../../components/Model/Success";
 import PaymentFailureModal from "../../components/Model/Failure";
 import axios from 'axios';
 import { io, Socket } from 'socket.io-client';
+import UPIPaymentModal from "../../components/UPIPaymentModel/UPIPaymentModel";
+import upi from '../../assets/upi.svg'
+import card from '../../assets/payment-protection.png';
+import banking from '../../assets/mobile-banking.png'
 
 type ExpressCheckoutMethod = "googlepay" | "paypal" | "shoppay";
 
@@ -74,6 +78,7 @@ const PaymentWidget: React.FC<PaymentWidgetProps> = ({
   const [sessionId, setSessionId] = useState<string>('');
   const [status, setStatus] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showUPIModel, setShowUPIModel] = useState(false)
 
   const createSession = async () => {
     try {
@@ -116,9 +121,11 @@ const PaymentWidget: React.FC<PaymentWidgetProps> = ({
         if(status === 'success'){
           setShowSuccess(true);
           setIsLoading(false);
+          setShowUPIModel(false);
         }else if(status === 'failure'){
           setShowFailure(true);
           setIsLoading(false);
+          setShowUPIModel(false);
         }
         console.log(`Socket: Status updated - ${id} (${status})`);
       }
@@ -200,7 +207,11 @@ const PaymentWidget: React.FC<PaymentWidgetProps> = ({
     }else if (selectedPaymentMethod === 'card' && !validate()) {
       return
     }else{
-      setIsLoading(true)
+      if(selectedDropDown === 'upi'){
+        setShowUPIModel(true)
+      }else{
+        setIsLoading(true)
+      }
       createSession();
     }
   };
@@ -210,6 +221,14 @@ const PaymentWidget: React.FC<PaymentWidgetProps> = ({
       {isLoading && <OverlayLoader isLoading={true} message={`${status}`} />}
       <PaymentSuccessModal isOpen={showSuccess} onClose={() => setShowSuccess(false)} />
       <PaymentFailureModal isOpen={showFailure} onClose={() => setShowFailure(false)} />
+      <UPIPaymentModal
+        isOpen={showUPIModel}
+        onClose={() => setShowUPIModel(false)}
+        onExpire={() => {
+          setShowFailure(true);
+          setShowUPIModel(false);
+        }}
+      />
       {(expressCheckoutMethods && expressCheckoutMethods.length > 0 )&& (
         <>
           <div className="express-checkout">
@@ -233,6 +252,7 @@ const PaymentWidget: React.FC<PaymentWidgetProps> = ({
         selectedDropDown={selectedDropDown}
         setIsOpen={setDropDown}
         type="upi"
+        icon={upi}
       >
         <UPICard
           title="Google Pay"
@@ -266,6 +286,8 @@ const PaymentWidget: React.FC<PaymentWidgetProps> = ({
         selectedDropDown={selectedDropDown}
         setIsOpen={setDropDown}
         type="card"
+        icon={card}
+        showCardIcons={true}
       >
         <CardsPaymentForm
           errors={errors}
@@ -278,6 +300,7 @@ const PaymentWidget: React.FC<PaymentWidgetProps> = ({
         selectedDropDown={selectedDropDown}
         setIsOpen={setDropDown}
         type="netBanking"
+        icon={banking}
       >
         <NetBankingCard
           title="HDFC Bank"

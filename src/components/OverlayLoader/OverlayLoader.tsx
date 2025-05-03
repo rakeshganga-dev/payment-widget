@@ -1,5 +1,5 @@
 import React from 'react';
-import './OverlayLoader.css';
+import './OverLayLoader.css';
 
 type OverlayLoaderProps = {
   isLoading: boolean;

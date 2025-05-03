@@ -7,7 +7,7 @@ function App() {
     <>
       <PaymentWidget 
       expressCheckoutMethods={['googlepay','paypal', 'shoppay']}
-      theme="Secondary"
+      theme="Primary"
       />
     </>
   )
